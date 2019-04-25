@@ -1,5 +1,5 @@
 class RecipesController < OpenReadController
-  before_action :set_recipe, only: [:update, :destroy]
+  before_action :set_recipe, only: %i[update destroy]
 
   # GET /recipes
   def index
@@ -26,7 +26,6 @@ class RecipesController < OpenReadController
 
   # PATCH/PUT /recipes/1
   def update
-
     if @recipe.update(recipe_params)
       render json: @recipe
     else
@@ -40,13 +39,17 @@ class RecipesController < OpenReadController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_recipe
-      @recipe = current_user.recipes.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def recipe_params
-      params.require(:recipe).permit(:name, :ingredient, :description)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_recipe
+  @recipe = current_user.recipes.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def recipe_params
+  params.require(:recipe).permit(:name,
+                                 :ingredient,
+                                 :description,
+                                 :user_id)
+  end
 end
