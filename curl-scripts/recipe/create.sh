@@ -6,7 +6,7 @@ curl "http://localhost:4741/recipes" \
 --data '{
   "recipe": {
     "name": "'"${NAME}"'",
-    "ingredient": "'"${INGREDIENT}"'",
+    "ingredient": "'"${INFREDIENT}"'",
     "description": "'"${DESCRIPTION}"'"
   }
 }'
